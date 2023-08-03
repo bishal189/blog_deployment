@@ -20,13 +20,19 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from bapp import views as bapp_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
+      # for authtication
+
+    path('register/',include('authentication.urls')),
     path('category/',include('bapp.urls')),
     path('<slug:slug>/',bapp_views.single_post,name='single_post'),
 
     # for search
 
-    path('blog/search/',bapp_views.search,name='search')
+    path('blog/search/',bapp_views.search,name='search'),
+
+  
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -6,6 +6,7 @@ def home(request):
     category=Category.objects.all()
     featured=Blog.objects.filter(is_featured=True,status='Published').order_by('created_at')
     not_featured=Blog.objects.filter(is_featured=False,status='Published')
+    print(not_featured,'*************')
     
     context={
        

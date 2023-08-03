@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bapp',
     'assignment',
+    'authentication',
+    'crispy_forms',
+    'crispy_bootstrap4',
+   
 ]
 
 MIDDLEWARE = [
@@ -72,6 +76,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'blog.wsgi.application'
+
+
+
+
 
 
 # Database
@@ -134,3 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL='/media/'
 
 MEDIA_ROOT=BASE_DIR/'media'
+
+
+# for crispy forms 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
