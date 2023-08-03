@@ -8,7 +8,7 @@ def home(request):
     not_featured=Blog.objects.filter(is_featured=False,status='Published')
     
     context={
-        'category':category,
+       
         'featured':featured,
         'not_featured':not_featured
     }
