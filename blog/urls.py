@@ -19,8 +19,10 @@ from django.urls import path,include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from bapp import views as bapp_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
     path('category/',include('bapp.urls')),
+    path('<slug:slug>/',bapp_views.single_post,name='single_post')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

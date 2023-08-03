@@ -41,7 +41,7 @@
     <div class="col-md-6">
       <div class="card border-0" >
         <div class="card-body">
-          <h3>{{item.title}}</h3>
+          <h3><a class="p-2 text-dark" href="{% url 'single_post' item.slug %}">{{item.title}}</a></h3>
           <small class="mb-1 text-muted">{{item.created_at| timesince}} ago | {{item.author|capfirst}}</small>
           <p class="card-text">{{item.descriptions| truncatewords:25}}</p>
         </div>

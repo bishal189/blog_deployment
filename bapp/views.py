@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 
 # Create your views here.
@@ -21,5 +21,18 @@ def post_by_category(request,category_id):
     return render(request,'home/category.html',context)
    
    
+    
+
+
+    # for single post
+
+
+
+def single_post(request,slug):
+    single_post=get_object_or_404(Blog,slug=slug)
+    context={
+        'single_post':single_post
+    }
+    return render(request,'home/single_post.html',context)
     
     
