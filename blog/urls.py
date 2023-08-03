@@ -24,5 +24,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,name='home'),
     path('category/',include('bapp.urls')),
-    path('<slug:slug>/',bapp_views.single_post,name='single_post')
+    path('<slug:slug>/',bapp_views.single_post,name='single_post'),
+
+    # for search
+
+    path('blog/search/',bapp_views.search,name='search')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

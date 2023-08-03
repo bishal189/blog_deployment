@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 from .models import Category,Blog
+from django.db.models import Q
 
 def post_by_category(request,category_id):
     # fetching the blog post based on category_id or category
@@ -36,3 +37,14 @@ def single_post(request,slug):
     return render(request,'home/single_post.html',context)
     
     
+
+
+
+def search(request):
+    keyword=request.GET['search']
+    blogs=Blog.objects.filter(Q(title__icontains=keyword)|Q( descriptions__icontains=keyword)|Q(blog_body__icontains=keyword),status='Published')
+    context={
+        'blogs':blogs,
+        'keyword':keyword
+    }
+    return render(request,'home/search.html',context)
