@@ -28,11 +28,15 @@ urlpatterns = [
 
     path('register/',include('authentication.urls')),
     path('category/',include('bapp.urls')),
-    path('<slug:slug>/',bapp_views.single_post,name='single_post'),
+    path('category/<slug:slug>/',bapp_views.single_post,name='single_post'),
 
     # for search
 
     path('blog/search/',bapp_views.search,name='search'),
+
+    # for dashboard
+
+    path('dashboard/',include('dashboard.urls')),
 
   
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
