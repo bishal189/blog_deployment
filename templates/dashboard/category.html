@@ -30,7 +30,7 @@
                     <td>{{cat.created_at}}</td>
                     <td>{{cat.updated_at}}</td>
                     <td>
-                       <a href=" "><i class="fa-solid fa-pen-to-square text-success"></i></a>
+                       <a href="{% url 'edit' cat.id %}"><i class="fa-solid fa-pen-to-square text-success"></i></a>
                         &nbsp;
                        <a href="{% url 'delete' cat.id %}"> <i class="fa-solid fa-trash text-danger"></i></a>
                     </td>
