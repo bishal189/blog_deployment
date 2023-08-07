@@ -1,7 +1,8 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from bapp.models import Blog,Category
 from django.contrib.auth.decorators import login_required
 from .forms import Category_form,Blog_form
+from django.utils.text import slugify
 
 # Create your views here.
 
@@ -66,3 +67,75 @@ def edit(request,id):
         'forms':forms,
     }
     return render(request,'dashboard/edit.html',context)
+
+
+
+
+
+
+
+
+# to display all the post
+
+def blog(request):
+    return render(request,'dashboard/blog.html')
+
+
+
+
+
+
+def add_post(request):
+    if request.method == 'POST':
+        forms=Blog_form(request.POST,request.FILES)
+      
+        if forms.is_valid():
+            post=forms.save(commit=False)
+            post.author=request.user
+            post.save()
+            title=forms.cleaned_data['title']
+            post.slug=slugify(title)+'-'+str(post.id)
+            post.save()
+            return redirect('blog')
+        else:
+            print(forms.errors)    
+    forms=Blog_form()
+    context={
+        'forms':forms,
+    }
+    return render(request,'dashboard/add_post.html',context)
+
+
+# for post edit
+
+def post_edit(request,id):
+    get_objects=Blog.objects.get(id=id)
+    if request.method == "POST":
+        print(request.POST)
+        forms=Blog_form(request.POST,request.FILES,instance=get_objects)
+        if forms.is_valid():
+            post=forms.save()
+            title=forms.cleaned_data['title']
+            post.slug=slugify(title)+'-'+ str(post.id)
+            post.save()
+            return redirect('blog')
+            
+           
+           
+        else:
+           print(forms.errors)
+
+
+    forms=Blog_form(instance=get_objects)
+    context={
+        'forms':forms,
+        'post':get_objects
+    }
+    return render(request,'dashboard/post_edit.html',context)
+
+# for deleteing post
+
+def post_delete(request,id):
+    post=Blog.objects.get(pk=id)
+    post.delete()
+    return redirect('blog')

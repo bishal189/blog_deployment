@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bapp.context_processors.get_category',
                 'bapp.context_processors.get_platforms',
+                'bapp.context_processors.blog_post',
             ],
         },
     },
