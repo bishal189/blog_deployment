@@ -88,7 +88,7 @@ def blog(request):
 def add_post(request):
     if request.method == 'POST':
         forms=Blog_form(request.POST,request.FILES)
-      
+
         if forms.is_valid():
             post=forms.save(commit=False)
             post.author=request.user
@@ -120,6 +120,7 @@ def post_edit(request,id):
             post.save()
             return redirect('blog')
             
+
 
 
     forms=Blog_form(instance=get_objects)
