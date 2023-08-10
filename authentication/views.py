@@ -34,9 +34,9 @@ def login(request):
         if forms.is_valid():
             username =forms.cleaned_data.get('username')
             password =forms.cleaned_data.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                auth_login(request, user)
+            person = authenticate(request, username=username, password=password)
+            if person is not None:
+                auth_login(request, person)
             return redirect('dashboard')
 
     else:            

@@ -120,10 +120,6 @@ def post_edit(request,id):
             post.save()
             return redirect('blog')
             
-           
-           
-        else:
-           print(forms.errors)
 
 
     forms=Blog_form(instance=get_objects)
