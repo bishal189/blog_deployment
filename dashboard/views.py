@@ -3,6 +3,9 @@ from bapp.models import Blog,Category
 from django.contrib.auth.decorators import login_required
 from .forms import Category_form,Blog_form
 from django.utils.text import slugify
+from django.contrib.auth.models import  User
+from .forms import Authforms
+from .forms import editform
 
 # Create your views here.
 
@@ -136,3 +139,62 @@ def post_delete(request,id):
     post=Blog.objects.get(pk=id)
     post.delete()
     return redirect('blog')
+
+
+
+def user(request):
+    all_user=User.objects.all()
+    content={
+        'all_user':all_user,
+    }
+    return render(request,'dashboard/user.html',content)
+
+
+
+
+
+def add_user(request):
+    if request.method == 'POST':
+        forms=Authforms(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('user')
+    forms=Authforms()
+    context={
+        'forms':forms
+    }
+    return render(request,'dashboard/add_user.html',context)
+
+
+
+
+
+def edit_user(request,id):
+    get_user=User.objects.get(id=id)
+    if request.method =='POST':
+        forms=editform(request.POST,instance=get_user)
+        if forms.is_valid():
+            forms.save()
+            return redirect('user')
+
+        else:
+            print(forms.errors)    
+    
+    forms=editform(instance=get_user)
+    context={
+        'forms':forms,
+        'id':id
+    }
+    return render(request,'dashboard/edit_user.html',context)
+
+
+
+
+
+# for deleting user
+
+def delete_user(request,id):
+    get_obj=User.objects.get(id=id)
+    get_obj.delete()
+    return redirect('user')
+   
