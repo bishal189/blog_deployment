@@ -131,7 +131,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR /"blog/static",
 
 ]
 
@@ -149,3 +149,6 @@ MEDIA_ROOT=BASE_DIR/'media'
 # for crispy forms 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+
+
+STATIC_ROOT= BASE_DIR/'static'
