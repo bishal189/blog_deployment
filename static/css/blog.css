@@ -67,3 +67,20 @@ h1, h2, h3, h4, h5, h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+
+
+@media only screen and (max-width: 463px){
+  .responsive{
+    display: flex;
+    flex-direction: column;
+  }
+  .form{
+    width: 100%;
+
+  }
+  .form form{
+    width: 100%;
+  }
+
+}
